@@ -20,6 +20,19 @@ public class TrialMove : MonoBehaviour
 
     public bool moving=false;
 
+    void Start()
+    {
+        GameObject spine=humanoid.transform.Find("metarig").transform.Find("spine").gameObject;
+        head=spine.transform.Find("spine.001").transform.Find("spine.002").transform.Find("spine.003").transform.Find("spine.004").transform.Find("spine.005").transform.Find("spine.006").gameObject;
+        upperarm=spine.transform.Find("spine.001").transform.Find("spine.002").transform.Find("spine.003").transform.Find("shoulder.L").transform.Find("upper_arm.L").gameObject;
+        lowerarm=upperarm.transform.Find("forearm.L").gameObject;
+        hand=lowerarm.transform.Find("hand.L").gameObject;
+        body=spine.transform.Find("spine.001").gameObject;
+        upperleg=spine.transform.Find("thigh.L").gameObject;
+        lowerleg=upperleg.transform.Find("shin.L").gameObject;
+        foot=lowerleg.transform.Find("foot.L").gameObject;
+    }
+
     
     public void move()
     {
@@ -27,7 +40,7 @@ public class TrialMove : MonoBehaviour
 
         if(moving)
         {
-            humanoid=GameObject.Find("Human").gameObject;
+            // humanoid=GameObject.Find("Human").gameObject;
             Animator anim=humanoid.GetComponent<Animator>();
             anim.enabled=true;
             
@@ -40,25 +53,25 @@ public class TrialMove : MonoBehaviour
                         parts.Add(obj);
                         posivec.Add(obj.transform.position);
                         rotavec.Add(obj.transform.rotation);
-                        obj.transform.parent=head.transform;                        
+                        obj.transform.parent=head.transform;                  
                         break;
                     case "UPPER ARM":
                         parts.Add(obj);
                         posivec.Add(obj.transform.position);
                         rotavec.Add(obj.transform.rotation);
-                        obj.transform.parent=upperarm.transform;                        
+                        obj.transform.parent=upperarm.transform;                   
                         break;
                     case "LOWER ARM":
                         parts.Add(obj);
                         posivec.Add(obj.transform.position);
                         rotavec.Add(obj.transform.rotation);
-                        obj.transform.parent=lowerarm.transform;                        
+                        obj.transform.parent=lowerarm.transform;
                         break;
                     case "HAND":
                         parts.Add(obj);
                         posivec.Add(obj.transform.position);
                         rotavec.Add(obj.transform.rotation);
-                        obj.transform.parent=hand.transform;                        
+                        obj.transform.parent=hand.transform;
                         break;
                     case "BODY":
                         parts.Add(obj);
@@ -88,7 +101,7 @@ public class TrialMove : MonoBehaviour
             }
         }
         else
-        {      
+        {
             //子オブジェクトとなった各パーツを最上階に移動
             for(int i=0;i<parts.Count;i++)
             {
@@ -113,7 +126,33 @@ public class TrialMove : MonoBehaviour
             lowerleg=upperleg.transform.Find("shin.L").gameObject;
             foot=lowerleg.transform.Find("foot.L").gameObject;
         }  
-        
-        
     }
+
+    public GameObject img1;
+    public GameObject img2;
+    int a=0;
+
+    void Update()
+    {
+        if(moving)
+        {
+            if(a<110)
+            {
+                a++;
+                img1.transform.position-=new Vector3(2f,0,0);
+                img2.transform.position+=new Vector3(2f,0,0);
+            }
+            
+        }
+        else
+        {
+            if(a>0)
+            {
+                a--;
+                img1.transform.position+=new Vector3(2f,0,0);
+                img2.transform.position-=new Vector3(2f,0,0);
+            }
+        }
+    }
+
 }

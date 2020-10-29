@@ -11,4 +11,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Custom_Page.unity
     guid: 9fc0d4010bbf28b4594072e72b8655ab
+  - enabled: 1
+    path: Assets/Scenes/Combine.unity
+    guid: bc13e5a6e85807a42948e61b8ca21db2
   m_configObjects: {}

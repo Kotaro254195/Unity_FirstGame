@@ -9,6 +9,8 @@ public class Camera_Controller : MonoBehaviour
 
     public GameObject cube;
 
+    public float height=0;
+
     float X;
     float Y;
     float z;
@@ -30,7 +32,7 @@ public class Camera_Controller : MonoBehaviour
             cam.transform.Translate(Vector3.left*X*0.1f);
             cam.transform.Translate(Vector3.down*Y*0.1f);
 
-            cam.transform.LookAt(cube.transform);
+            cam.transform.LookAt(new Vector3(0,height,0));
         }
         // else if(Input.GetMouseButton(1)&&Button_Controller.rotation=="vertical")
         // {
@@ -44,7 +46,13 @@ public class Camera_Controller : MonoBehaviour
         // }
 
         z=Input.GetAxis("Mouse ScrollWheel");
-        cam.transform.Translate(Vector3.forward*z*2f);
+        cam.transform.Translate(Vector3.forward*z*4f);
+
+        // if (Input.GetMouseButton(2))
+        // {
+        //     Y = Input.GetAxis("Mouse Y");
+        //     height+=Y*0.5f;
+        // }
     }   
 
 }

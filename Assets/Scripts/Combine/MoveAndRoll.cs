@@ -56,6 +56,14 @@ public class MoveAndRoll : MonoBehaviour
                 case "Button_Back":
                     setobj.transform.position+=new Vector3(0,0,0.08f);
                     break;
+                case "Button_Scaling1":
+                    setobj.transform.localScale+=new Vector3(0.01f,0.01f,0.01f);
+                    Debug.Log("a");
+                    break;
+                case "Button_Scaling2":
+                    setobj.transform.localScale-=new Vector3(0.01f,0.01f,0.01f);
+                    Debug.Log("b");
+                    break;
             }
         }
     }

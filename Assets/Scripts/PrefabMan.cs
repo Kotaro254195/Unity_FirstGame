@@ -8,6 +8,7 @@
  * Twitter：https://twitter.com/consolesoup
  * 
  */
+// #if UNITY_EDITOR
 #pragma warning disable 0219
 
 using UnityEngine;
@@ -48,8 +49,9 @@ public class PrefabMan : MonoBehaviour
         // }
 
         //prefabの保存
-        UnityEditor.PrefabUtility.CreatePrefab("Assets/Resources/" + name + ".prefab", gameobj);
-        UnityEditor.AssetDatabase.SaveAssets();
+        // UnityEditor.PrefabUtility.CreatePrefab("Assets/Resources/" + name + ".prefab", gameobj);
+        PrefabUtility.SaveAsPrefabAsset(gameobj,"Assets/Resources/" + name + ".prefab");
+        AssetDatabase.SaveAssets();
     }
 
     /*----------------------------------------------------------*
@@ -76,3 +78,4 @@ public class PrefabMan : MonoBehaviour
         return null;
     }
 }
+// #endif

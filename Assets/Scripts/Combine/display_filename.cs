@@ -21,8 +21,9 @@ public class display_filename : MonoBehaviour
         {
             GameObject obj=Instantiate(choice,choice.transform.position,Quaternion.identity);
             obj.transform.SetParent(Content.transform,false);
-            string str=f.Substring(0,f.IndexOf(".prefab"));
-            obj.transform.Find("Text").GetComponent<Text>().text=str.Substring(str.IndexOf("_")+1);
+            // string str=f.Substring(0,f.IndexOf(".prefab"));
+            // obj.transform.Find("Text").GetComponent<Text>().text=str.Substring(str.IndexOf("_")+1);
+            obj.transform.Find("Text").GetComponent<Text>().text=f;
         }
     }
 
@@ -39,8 +40,9 @@ public class display_filename : MonoBehaviour
             {
                 GameObject obj=Instantiate(choice);
                 obj.transform.SetParent(Content.transform,false);
-                string str=f.Substring(0,f.IndexOf(".prefab"));
-                obj.transform.Find("Text").GetComponent<Text>().text=str.Substring(str.IndexOf("_")+1);
+                // string str=f.Substring(0,f.IndexOf(".prefab"));
+                // obj.transform.Find("Text").GetComponent<Text>().text=str.Substring(str.IndexOf("_")+1);
+                obj.transform.Find("Text").GetComponent<Text>().text=f;
             }
         }
         default_value=dd.value;
@@ -77,19 +79,28 @@ public class display_filename : MonoBehaviour
 
     }
 
-    public List<string> GetFileNames(){
-        DirectoryInfo dir = new DirectoryInfo(Application.dataPath+"/Resources/");
-        FileInfo[] info = dir.GetFiles("*.prefab");
-        List<string> list=new List<string>();
+    public List<string> GetFileNames()
+    {
+        // DirectoryInfo dir = new DirectoryInfo(Application.dataPath+"/Resources/");
+        // FileInfo[] info = dir.GetFiles("*.prefab");
+        // List<string> list=new List<string>();
 
-        foreach(FileInfo f in info)
-        {
-            if(parts==f.Name.Substring(0,f.Name.IndexOf("_")))
-            {
-                list.Add(f.Name);
-            }
-        }
-        
+        // foreach(FileInfo f in info)
+        // {
+        //     if(parts==f.Name.Substring(0,f.Name.IndexOf("_")))
+        //     {
+        //         list.Add(f.Name);
+        //     }
+        // }        
+
+        // return list;
+
+        List<string> list=new List<string>();
+        string data=PlayerPrefs.GetString(parts+"parts");
+        Debug.Log(data);
+        list=new List<string>(data.Split(','));
+        list.RemoveAt(list.Count-1);
+
         return list;
     }
 }

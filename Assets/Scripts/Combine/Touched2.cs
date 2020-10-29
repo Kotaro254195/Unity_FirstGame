@@ -14,8 +14,9 @@ public class Touched2 : MonoBehaviour
     public void Touch()
     {
         Debug.Log(this.transform.parent.name);
-        // mar.setobj=GameObject.Find(this.transform.parent.name).gameObject;
-        GameObject[] objs=GameObject.FindGameObjectsWithTag("Parts");
-        mar.setobj=Array.FindAll(objs,obj=>obj.name==this.transform.parent.name)[0];
+        mar.setobj=GameObject.Find(this.transform.parent.name.Substring(7)).gameObject;
+
+        // GameObject[] objs=GameObject.FindGameObjectsWithTag("Parts");
+        // mar.setobj=Array.FindAll(objs,obj=>obj.name==this.transform.parent.name.Substring(7))[0];
     }
 }
